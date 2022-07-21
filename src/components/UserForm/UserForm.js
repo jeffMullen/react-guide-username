@@ -1,6 +1,7 @@
 import React from "react";
 
-import Card from "../UI/Card";
+import Card from "../UI/Card/Card";
+import Button from "../UI/Button/Button";
 
 import styles from "./UserForm.module.css";
 
@@ -16,6 +17,9 @@ const UserForm = () => {
           <div className={styles["sub-form"]}>
             <label>Age (Years)</label>
             <input type="text"></input>
+          </div>
+          <div>
+            <Button type="submit">Add User</Button>
           </div>
         </div>
       </form>

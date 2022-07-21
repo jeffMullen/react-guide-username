@@ -1,0 +1,13 @@
+.button {
+  background: indigo;
+  color: white;
+  border: transparent;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: purple;
+}
