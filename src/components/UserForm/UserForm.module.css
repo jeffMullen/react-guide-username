@@ -1,0 +1,16 @@
+.form-controls {
+  margin: 0.5rem 0;
+}
+
+.sub-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-form label {
+  margin-bottom: 0.5rem;
+}
+
+.sub-form input {
+  margin-bottom: 0.5rem;
+}
