@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 //Components
 import UserForm from "./components/UserForm/UserForm";
@@ -10,7 +9,7 @@ function App() {
 
   return (
     <div>
-      <UserForm />
+      <UserForm users={users} setUsers={setUsers} />
       <UserList users={users} />
     </div>
   );
