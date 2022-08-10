@@ -4,22 +4,39 @@ import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 
 import styles from "./UserForm.module.css";
-import UserList from "../UserList/UserList";
 
 const UserForm = (props) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
+  const [isValidName, setIsValidName] = useState(false);
+  const [isValidAge, setIsValidAge] = useState(false);
+
   const nameHandler = (event) => {
+    if (event.target.value.trim().length === 0) {
+      setIsValidName(false);
+    } else {
+      setIsValidName(true);
+    }
     setName(event.target.value);
   };
 
   const ageHandler = (event) => {
+    if (event.target.value.trim().length === 0) {
+      setIsValidAge(false);
+    } else {
+      setIsValidAge(true);
+    }
     setAge(event.target.value);
   };
 
-  const addUser = (event) => {
+  const sumbitHandler = (event) => {
     event.preventDefault();
+
+    if (!isValidName || !isValidAge) {
+      return;
+    }
+
     props.setUsers([
       ...props.users,
       {
@@ -31,11 +48,14 @@ const UserForm = (props) => {
 
     setName("");
     setAge("");
+
+    setIsValidName(false);
+    setIsValidAge(false);
   };
 
   return (
     <Card>
-      <form onSubmit={addUser}>
+      <form onSubmit={sumbitHandler}>
         <div className={styles["form-controls"]}>
           <div className={styles["sub-form"]}>
             <label>Username</label>
