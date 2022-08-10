@@ -18,26 +18,35 @@ const UserForm = (props) => {
     setAge(event.target.value);
   };
 
-  const addUser = () => {
-    props.setUsers(...props.users, { id: Math.random().toString(), name, age });
+  const addUser = (event) => {
+    event.preventDefault();
+    props.setUsers([
+      ...props.users,
+      {
+        id: Math.random().toString(),
+        name: name,
+        age: age,
+      },
+    ]);
+
+    setName("");
+    setAge("");
   };
 
   return (
     <Card>
-      <form>
+      <form onSubmit={addUser}>
         <div className={styles["form-controls"]}>
           <div className={styles["sub-form"]}>
             <label>Username</label>
-            <input type="text" onChange={nameHandler}></input>
+            <input type="text" onChange={nameHandler} value={name}></input>
           </div>
           <div className={styles["sub-form"]}>
             <label>Age (Years)</label>
-            <input type="text" onChange={ageHandler}></input>
+            <input type="text" onChange={ageHandler} value={age}></input>
           </div>
           <div>
-            <Button type="submit" onSubmit={addUser}>
-              Add User
-            </Button>
+            <Button type="submit">Add User</Button>
           </div>
         </div>
       </form>

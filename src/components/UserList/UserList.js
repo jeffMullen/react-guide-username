@@ -3,13 +3,12 @@ import React from "react";
 import Card from "../UI/Card/Card";
 
 const UserList = (props) => {
-  console.log(props.users);
   return (
     <>
       {props.users.map((user) => (
-        <Card key={Math.random()}>
+        <Card key={user.id}>
           <p>
-            {user.name} ({user.age} years old.)
+            {user.name} ({user.age} Years Old)
           </p>
         </Card>
       ))}
