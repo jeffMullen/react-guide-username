@@ -16,9 +16,9 @@ const UserForm = (props) => {
   const [modalText, setModalText] = useState("");
 
   const nameHandler = (event) => {
-    const name = event.target.value.trim();
+    const tempName = event.target.value.trim();
 
-    if (name.length === 0) {
+    if (tempName.length === 0) {
     } else {
       setIsValidName(true);
     }
@@ -26,10 +26,10 @@ const UserForm = (props) => {
   };
 
   const ageHandler = (event) => {
-    const age = event.target.value.trim();
+    const tempAge = event.target.value.trim();
     const numberAge = parseInt(age);
 
-    if (age.length === 0 || isNaN(numberAge) || age[0] === "-") {
+    if (tempAge.length === 0 || isNaN(numberAge)) {
     } else {
       setIsValidAge(true);
     }
@@ -40,6 +40,13 @@ const UserForm = (props) => {
     event.preventDefault();
 
     if (!isValidName || !isValidAge) {
+      setModalText("Please enter a valid name and age (non-empty values)");
+      setModal(true);
+      return;
+    }
+
+    if (age[0] === "-") {
+      setModalText("Please enter a valid age (>0)");
       setModal(true);
       return;
     }
