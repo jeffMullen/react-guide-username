@@ -73,12 +73,22 @@ const UserForm = (props) => {
         <form onSubmit={sumbitHandler}>
           <div className={styles["form-controls"]}>
             <div className={styles["sub-form"]}>
-              <label>Username</label>
-              <input type="text" onChange={nameHandler} value={name}></input>
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                onChange={nameHandler}
+                value={name}
+              ></input>
             </div>
             <div className={styles["sub-form"]}>
-              <label>Age (Years)</label>
-              <input type="text" onChange={ageHandler} value={age}></input>
+              <label htmlFor="age">Age (Years)</label>
+              <input
+                type="number"
+                id="age"
+                onChange={ageHandler}
+                value={age}
+              ></input>
             </div>
             <div>
               <Button type="submit">Add User</Button>
