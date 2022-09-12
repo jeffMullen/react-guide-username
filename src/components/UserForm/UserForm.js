@@ -13,7 +13,9 @@ const UserForm = (props) => {
   const [isValidAge, setIsValidAge] = useState(false);
 
   const nameHandler = (event) => {
-    if (event.target.value.trim().length === 0) {
+    const name = event.target.value.trim();
+
+    if (name.length === 0) {
       setIsValidName(false);
     } else {
       setIsValidName(true);
@@ -22,7 +24,10 @@ const UserForm = (props) => {
   };
 
   const ageHandler = (event) => {
-    if (event.target.value.trim().length === 0) {
+    const age = event.target.value.trim();
+    const numberAge = parseInt(age);
+
+    if (age.length === 0 || isNaN(numberAge) || age[0] === "-") {
       setIsValidAge(false);
     } else {
       setIsValidAge(true);
