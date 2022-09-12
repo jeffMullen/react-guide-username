@@ -5,10 +5,6 @@ import Button from "../Button/Button";
 import styles from "./ErrorModal.module.css";
 
 const ErrorModal = (props) => {
-  const handleClick = () => {
-    props.setModal(false);
-  };
-
   return (
     <>
       {props.modal ? (
@@ -19,7 +15,7 @@ const ErrorModal = (props) => {
             <div className={styles.buttonDiv}>
               <Button
                 type="button"
-                event={handleClick}
+                click={() => props.setModal(false)}
                 className={styles.button}
               >
                 Okay
