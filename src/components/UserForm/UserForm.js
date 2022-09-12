@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
+import ErrorModal from "../UI/ErrorModal/ErrorModal";
 
 import styles from "./UserForm.module.css";
 
@@ -11,12 +12,13 @@ const UserForm = (props) => {
 
   const [isValidName, setIsValidName] = useState(false);
   const [isValidAge, setIsValidAge] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [modalText, setModalText] = useState("");
 
   const nameHandler = (event) => {
     const name = event.target.value.trim();
 
     if (name.length === 0) {
-      setIsValidName(false);
     } else {
       setIsValidName(true);
     }
@@ -28,7 +30,6 @@ const UserForm = (props) => {
     const numberAge = parseInt(age);
 
     if (age.length === 0 || isNaN(numberAge) || age[0] === "-") {
-      setIsValidAge(false);
     } else {
       setIsValidAge(true);
     }
@@ -39,6 +40,7 @@ const UserForm = (props) => {
     event.preventDefault();
 
     if (!isValidName || !isValidAge) {
+      setModal(true);
       return;
     }
 
@@ -59,23 +61,27 @@ const UserForm = (props) => {
   };
 
   return (
-    <Card>
-      <form onSubmit={sumbitHandler}>
-        <div className={styles["form-controls"]}>
-          <div className={styles["sub-form"]}>
-            <label>Username</label>
-            <input type="text" onChange={nameHandler} value={name}></input>
+    <>
+      <Card>
+        <form onSubmit={sumbitHandler}>
+          <div className={styles["form-controls"]}>
+            <div className={styles["sub-form"]}>
+              <label>Username</label>
+              <input type="text" onChange={nameHandler} value={name}></input>
+            </div>
+            <div className={styles["sub-form"]}>
+              <label>Age (Years)</label>
+              <input type="text" onChange={ageHandler} value={age}></input>
+            </div>
+            <div>
+              <Button type="submit">Add User</Button>
+            </div>
           </div>
-          <div className={styles["sub-form"]}>
-            <label>Age (Years)</label>
-            <input type="text" onChange={ageHandler} value={age}></input>
-          </div>
-          <div>
-            <Button type="submit">Add User</Button>
-          </div>
-        </div>
-      </form>
-    </Card>
+        </form>
+      </Card>
+
+      <ErrorModal modal={modal} setModal={setModal} modalText={modalText} />
+    </>
   );
 };
 
